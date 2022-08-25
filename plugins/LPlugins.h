@@ -29,18 +29,15 @@ public:
 	QStringList panelPlugins();
 	QStringList desktopPlugins();
 	QStringList menuPlugins();
-	QStringList colorItems();
 	//Information on individual plugins
 	LPI panelPluginInfo(QString);
 	LPI desktopPluginInfo(QString);
 	LPI menuPluginInfo(QString);
-	LPI colorInfo(QString);
 
 private:
 	QHash<QString, LPI> PANEL, DESKTOP, MENU, COLORS;
 	void LoadPanelPlugins();
 	void LoadDesktopPlugins();
 	void LoadMenuPlugins();
-	void LoadColorItems();
 };
 #endif
