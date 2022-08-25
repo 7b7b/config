@@ -7,7 +7,7 @@
 #include "page_autostart.h"
 #include "ui_page_autostart.h"
 
-#include "../AppDialog.h"
+#include "plugins/AppDialog.h"
 //==========
 //    PUBLIC
 //==========

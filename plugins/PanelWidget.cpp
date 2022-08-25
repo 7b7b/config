@@ -9,7 +9,6 @@
 
 #include "GetPluginDialog.h"
 #include "AppDialog.h"
-#include "ScriptDialog.h"
 
 PanelWidget::PanelWidget(QWidget *parent, QWidget *Main, LPlugins *Pinfo) : QWidget(parent), ui(new Ui::PanelWidget){
   ui->setupUi(this);
@@ -66,18 +65,6 @@ void PanelWidget::LoadSettings(QSettings *settings, int Dnum, int Pnum){
 	      it->setWhatsThis(plugs[i]); //make sure to preserve the entire plugin ID (is the unique version)
 	  ui->list_plugins->addItem(it);
 	}
-
-      }else if(pid.startsWith("jsonmenu")){
-        LPI info = PINFO->panelPluginInfo( plugs[i].section("::::",0,0) );
-        if(info.ID.isEmpty()){ continue; } //invalid plugin type (no longer available?)
-        QString exec = plugs[i].section("::::",1,1);
-        QListWidgetItem *item = new QListWidgetItem();
-          item->setWhatsThis( plugs[i] );
-          item->setIcon( LXDG::findIcon(plugs[i].section("::::",3,3),info.icon) );
-          item->setText( plugs[i].section("::::",2,2) +" ("+info.name+")" );
-          item->setToolTip( info.description );
-        ui->list_plugins->addItem(item);
-
       }else{
         LPI info = PINFO->panelPluginInfo(pid);
         if(!info.ID.isEmpty()){
@@ -201,17 +188,6 @@ void PanelWidget::on_tool_addplugin_clicked(){
     XDGDesktop desk(app);
     it = new QListWidgetItem( LXDG::findIcon(desk.icon,""), desk.name);
       it->setWhatsThis(pan);
-
-  }else if(pan=="jsonmenu"){
-    //Need to prompt for the script file, name, and icon to use
-    //new ID format: "jsonmenu"::::<exec to run>::::<name>::::<icon>
-    ScriptDialog SD(this);
-    SD.exec();
-    if(!SD.isValid()){ return; }
-    LPI info = PINFO->panelPluginInfo(pan);
-    it = new QListWidgetItem( LXDG::findIcon(SD.icon(),"text-x-script"), SD.name()+" ("+info.ID+")" );
-    it->setWhatsThis(info.ID+"::::"+SD.command()+"::::"+SD.name()+"::::"+SD.icon());
-    it->setToolTip( info.description );
   }else{
     if(pan.isEmpty()){ return; } //nothing selected
     //Add the new plugin to the list

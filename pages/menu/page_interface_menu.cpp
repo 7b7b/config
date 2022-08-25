@@ -6,9 +6,9 @@
 //===========================================
 #include "page_interface_menu.h"
 #include "ui_page_interface_menu.h"
-#include "../AppDialog.h"
-#include "../GetPluginDialog.h"
-#include "../ScriptDialog.h"
+#include "plugins/AppDialog.h"
+#include "plugins/GetPluginDialog.h"
+//#include "../ScriptDialog.h"
 //==========
 //    PUBLIC
 //==========
@@ -61,7 +61,7 @@ QStringList items = settings.value("menu/itemlist", QStringList() ).toStringList
         item->setToolTip( desk.comment );
       ui->list_menu->addItem(item);
       continue; //now go to the next item
-    }else if(items[i].startsWith("jsonmenu::::")){
+    }/*else if(items[i].startsWith("jsonmenu::::")){
       LPI info = PINFO->menuPluginInfo( items[i].section("::::",0,0) );
       if(info.ID.isEmpty()){ continue; } //invalid plugin type (no longer available?)
       QString exec = items[i].section("::::",1,1);
@@ -73,7 +73,7 @@ QStringList items = settings.value("menu/itemlist", QStringList() ).toStringList
         item->setToolTip( info.description );
       ui->list_menu->addItem(item);
       continue; //now go to the next item
-    }
+    }*/
     LPI info = PINFO->menuPluginInfo(items[i]);
     if(info.ID.isEmpty()){ continue; } //invalid plugin
     //qDebug() << "Add Menu Item:" << info.ID;
@@ -130,7 +130,7 @@ void page_interface_menu::addmenuplugin(){
     it = new QListWidgetItem(LXDG::findIcon(desk.icon,""), desk.name );
       it->setWhatsThis(info.ID+"::::"+desk.filePath);
       it->setToolTip( desk.comment );
-  }else if(info.ID=="jsonmenu"){
+  /*}else if(info.ID=="jsonmenu"){
     //Need to prompt for the script file, name, and icon to use
     //new ID format: "jsonmenu"::::<exec to run>::::<name>::::<icon>
     ScriptDialog SD(this);
@@ -138,7 +138,7 @@ void page_interface_menu::addmenuplugin(){
     if(!SD.isValid()){ return; }
     it = new QListWidgetItem( LXDG::findIcon(SD.icon(),"text-x-script"), SD.name()+" ("+info.ID+")" );
     it->setWhatsThis(info.ID+"::::"+SD.command()+"::::"+SD.name()+"::::"+SD.icon());
-    it->setToolTip( info.description );
+    it->setToolTip( info.description );*/
   }else{
     it = new QListWidgetItem( LXDG::findIcon(info.icon,""), info.name );
     it->setWhatsThis(info.ID);

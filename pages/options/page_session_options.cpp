@@ -144,7 +144,7 @@ void page_session_options::updateIcons(){
 //=================
 //         PRIVATE
 //=================
-
+//TODO: replace it into a textline, not a selection.
 void page_session_options::FindWindowManagerOptions(){
     // Try to find all available window managers and add them to drop-down box.
     ui->mywindowmanager->clear();
@@ -158,18 +158,6 @@ void page_session_options::FindWindowManagerOptions(){
         ui->mywindowmanager->addItem(wms[i], path);
       }
     }
-    /*if (QFileInfo::exists("/usr/bin/fluxbox"))
-        ui->mywindowmanager->addItem("/usr/bin/fluxbox");
-    else if (QFileInfo::exists("/usr/local/bin/fluxbox"))
-        ui->mywindowmanager->addItem("/usr/local/bin/fluxbox");
-    if (QFileInfo::exists("/usr/bin/kwin"))
-        ui->mywindowmanager->addItem("/usr/bin/kwin");
-    else if (QFileInfo::exists("/usr/local/bin/kwin"))
-        ui->mywindowmanager->addItem("/usr/local/bin/kwin");
-    if (QFileInfo::exists("/usr/bin/openbox"))
-        ui->mywindowmanager->addItem("/usr/bin/openbox");
-    else if (QFileInfo::exists("/usr/local/bin/openbox"))
-        ui->mywindowmanager->addItem("/usr/local/bin/openbox");*/
 }
 
 bool page_session_options::verifySettingsReset(){
@@ -224,7 +212,7 @@ void page_session_options::sessionResetLumina(){
 
 void page_session_options::sessionLoadTimeSample(){
   if(ui->line_session_time->text().simplified().isEmpty()){
-    ui->label_session_timesample->setText( QTime::currentTime().toString(Qt::DefaultLocaleShortDate) );
+    ui->label_session_timesample->setText( QLocale().toString(QTime::currentTime(), QLocale::ShortFormat) );
   }else{
     ui->label_session_timesample->setText( QTime::currentTime().toString( ui->line_session_time->text() ) );
   }
@@ -247,7 +235,7 @@ void page_session_options::sessionShowTimeCodes(){
 
 void page_session_options::sessionLoadDateSample(){
   if(ui->line_session_date->text().simplified().isEmpty()){
-    ui->label_session_datesample->setText( QDate::currentDate().toString(Qt::DefaultLocaleShortDate) );
+    ui->label_session_datesample->setText( QLocale().toString(QTime::currentTime(), QLocale::ShortFormat) );
   }else{
     ui->label_session_datesample->setText( QDate::currentDate().toString( ui->line_session_date->text() ) );
   }

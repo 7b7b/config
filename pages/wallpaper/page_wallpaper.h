@@ -6,8 +6,8 @@
 //===========================================
 #ifndef _LUMINA_CONFIG_PAGE_WALLPAPER_H
 #define _LUMINA_CONFIG_PAGE_WALLPAPER_H
-#include "../globals.h"
-#include "PageWidget.h"
+#include "globals.h"
+#include "../PageWidget.h"
 
 namespace Ui{
 	class page_wallpaper;

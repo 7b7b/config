@@ -24,29 +24,23 @@ pkg_check_modules(LUMINA REQUIRED lumina)
 add_executable(${PROJECT}
  main.cpp
  mainWindow.cpp
- LPlugins.cpp
- ColorDialog.cpp
- ThemeDialog.cpp
- GetPluginDialog.cpp
- ScriptDialog.cpp
+ plugins/LPlugins.cpp
+ plugins/GetPluginDialog.cpp
  pages/PageWidget.h
  globals.h
- AppDialog.h
- PanelWidget.cpp
+ plugins/AppDialog.h
+ plugins/PanelWidget.cpp
  pages/getPage.cpp
  pages/page_main.cpp
- pages/page_wallpaper.cpp
- pages/page_autostart.cpp
- pages/page_defaultapps.cpp
- pages/page_fluxbox_keys.cpp
- pages/page_fluxbox_settings.cpp
- pages/page_interface_desktop.cpp
- pages/page_interface_menu.cpp
- pages/page_interface_panels.cpp
- pages/page_session_locale.cpp
- pages/page_session_options.cpp
- pages/page_compton.cpp
- pages/page_soundtheme.cpp
+ pages/wallpaper/page_wallpaper.cpp
+ pages/autostart/page_autostart.cpp
+ pages/defaultapps/page_defaultapps.cpp
+ pages/desktop/page_interface_desktop.cpp
+ pages/menu/page_interface_menu.cpp
+ pages/panels/page_interface_panels.cpp
+ pages/locale/page_session_locale.cpp
+ pages/options/page_session_options.cpp
+ pages/soundtheme/page_soundtheme.cpp
 )
 
 # Add the dependencies for linking

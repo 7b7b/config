@@ -6,7 +6,7 @@
 //===========================================
 #include "page_soundtheme.h"
 #include "ui_page_soundtheme.h"
-#include "../AppDialog.h"
+#include "plugins/AppDialog.h"
 
 //==========
 //    PUBLIC
